@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+  #https://hub.docker.com/r/minio/minio/
+  minio:
+    image: minio/minio:latest
+    volumes:
+      - minio-data:/data
+    expose:
+      - "9000"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: password
+    command: server /data
+    ports:
+      - 9000:9000
+
+  #https://github.com/jgraph/docker-drawio
+  drawio:
+    image: jgraph/drawio
+    container_name: drawio
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+      - 8443:8443
+
+volumes:
+  minio-data:

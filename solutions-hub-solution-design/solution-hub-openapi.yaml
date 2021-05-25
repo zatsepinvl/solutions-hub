@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Solition Hub API
+  description: Solition Hub API
+  version: 0.0.1
+servers:
+  - url: 'https'
+paths:
+  /solutions/{solutionId}:
+    get:
+      tags:
+        - Solutions
+      responses:
+        200:
+          description: "Solution"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SolutionObject"
+
+  /solutions/search:
+    post:
+      tags:
+        - Solutions
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                keywords:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/SolutionObject"
+
+components:
+  schemas:
+    SolutionObject:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        desription:
+          type: string
+        readme:
+          type: string
+        keywords:
+          type: array
+          items:
+            type: string
+
+
