@@ -5,6 +5,10 @@ import com.github.dockerjava.api.model.*
 import com.github.dockerjava.core.DefaultDockerClientConfig
 import com.github.dockerjava.core.DockerClientImpl
 import com.github.dockerjava.httpclient5.ApacheDockerHttpClient
+import io.minio.GetObjectTagsArgs
+import io.minio.GetPresignedObjectUrlArgs
+import io.minio.MinioClient
+import io.minio.PutObjectArgs
 import org.apache.commons.lang.SystemUtils
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.core.io.Resource
@@ -80,26 +84,27 @@ class PandocConverter(
 
         docker.removeContainerCmd(container.id).withForce(true).exec()
 
-        /* val minioClient: MinioClient = MinioClient.builder()
-             .endpoint("http://localhost:9000")
-             .credentials("minio", "password")
-             .build()
-
-
-         if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket("filestorage").build())) {
-             minioClient.makeBucket(MakeBucketArgs.builder().bucket("filestorage").build());
-         }
-
-         val response = minioClient.putObject(
-             PutObjectArgs.builder()
-                 .stream(
-                     Files.newInputStream(outputPath),
-                     Files.size(outputPath), -1
-                 )
-                 .bucket("filestorage")
-                 .`object`(outputFilename)
+        /*  val minioClient: MinioClient = MinioClient.builder()
+                 .endpoint("http://localhost:9000")
+                 .credentials("minio", "password")
                  .build()
-         )*/
+            minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder()
+    */
+/*
+        if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket("filestorage").build())) {
+            minioClient.makeBucket(MakeBucketArgs.builder().bucket("filestorage").build());
+        }
+
+        val response = minioClient.putObject(
+            PutObjectArgs.builder()
+                .stream(
+                    Files.newInputStream(outputPath),
+                    Files.size(outputPath), -1
+                )
+                .bucket("filestorage")
+                .`object`(outputFilename)
+                .build()
+        )*/
         val mediaFiles = Files.walk(outputMediaFolderPath)
             .filter { path -> !Files.isDirectory(path) }
             .toList()

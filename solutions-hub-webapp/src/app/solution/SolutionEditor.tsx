@@ -3,11 +3,9 @@ import {Form, Input, Button, Radio, Col, Row, Tag, Tooltip, Divider, Tabs} from 
 import {Upload, message} from 'antd';
 import {InboxOutlined, PlusOutlined} from '@ant-design/icons';
 import {DraggerProps} from "antd/lib/upload";
-import EditableTagGroup from "./EditableTagGroup";
+import EditableTagGroup from "../../uikit/EditableTagGroup/EditableTagGroup";
 import {useHistory} from 'react-router-dom';
 import {Typography, Space} from 'antd';
-import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
 
 const {Text, Link, Title} = Typography;
 

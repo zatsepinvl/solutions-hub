@@ -31,7 +31,7 @@ const SolutionsSearch: FC = observer(() => {
     return (
         <Row gutter={[20, 20]}>
             <Col span={16} offset={4}>
-                <Search placeholder="input search text" enterButton="Search"/>
+                <Search placeholder="Keyword or name" enterButton="Search"/>
             </Col>
             <Col span={16} offset={4}>
                 <List
@@ -51,7 +51,7 @@ const SolutionsSearch: FC = observer(() => {
                             <List.Item.Meta
                                 avatar={<SolutionOutlined style={{"fontSize": "24px"}}/>}
                                 title={<a href="#"
-                                          onClick={() => history.push("/solutions/solution-hub/readme")}>{item.title}</a>}
+                                          onClick={() => history.push("/solutions/solution-hub/design")}>{item.title}</a>}
                                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                             />
                         </List.Item>
