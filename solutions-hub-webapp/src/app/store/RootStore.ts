@@ -1,4 +1,4 @@
-import SolutionStore from "../solution/SolutionStore";
+import SolutionStore from "../solution/solutionStore";
 
 class RootStore {
     readonly solutionStore: SolutionStore;

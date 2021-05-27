@@ -1,4 +1,7 @@
-export default {
+import {Solution} from "./solution";
+import dayjs from "dayjs";
+
+const demoSolution: Solution = {
     name: "Solution Hub",
     keywords: [
         "hub",
@@ -59,5 +62,29 @@ These features **do not work by default**.
 | ---------: | :------------------- |
 | CommonMark | 100%                 |
 | GFM        | 100% w/ \`remark-gfm\` |
-`
+`,
+    assets: [
+        {
+            name: 'solutions-hub-openapi.yaml',
+            updatedAt: dayjs()
+        },
+        {
+            name: 'solutions-hub-solution-design.drawio',
+            updatedAt: dayjs()
+        },
+        {
+            name: 'sequence-diagram.puml',
+            updatedAt: dayjs()
+        },
+    ],
+    contributors: [
+        {
+            name: "Vladimir Zatsepin",
+        },
+        {
+            name: "<Your name here ;)>",
+        },
+    ],
 }
+
+export default demoSolution;

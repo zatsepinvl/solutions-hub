@@ -3,13 +3,13 @@ import {Input, Tag, Tooltip} from "antd";
 import {PlusOutlined} from "@ant-design/icons";
 import "./EditableTagGroup.css"
 
-interface EditableTagGroup {
+interface EditableTagGroupProps {
     tags: string[],
     onTagsChanged: (tags: string[]) => void
 }
 
 const EditableTagGroup: FC = () => {
-    const [tags, setTags] = useState(["React", "Spring", "REST API"]);
+    const [tags, setTags] = useState(new Array<string>());
     const [inputVisible, setInputVisible] = useState(false);
     const [inputValue, setInputValue] = useState("");
     const [editInputValue, setEditInputValue] = useState("");

@@ -1,9 +1,9 @@
 import {makeAutoObservable} from "mobx";
-import {Solution} from "./Solution";
-import testSolution from "./testSolution";
+import {Solution} from "./solution";
+import demoSolution from "./demoSolution";
 
 class SolutionStore {
-    private _solution: Solution = testSolution
+    private _solution: Solution = demoSolution
 
     constructor() {
         makeAutoObservable(this)

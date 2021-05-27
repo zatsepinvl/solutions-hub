@@ -2,18 +2,13 @@ import React from "react";
 import {Layout, Menu} from "antd";
 import "antd/dist/antd.css";
 import {RootStoreContext} from "./store/useStore";
-import SolutionViewer from "./solution/SolutionViewer";
 import RootStore from "./store/RootStore";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from "react-router-dom";
+import {BrowserRouter as Router, Redirect, Route, Switch,} from "react-router-dom";
 import SolutionEditor from "./solution/SolutionEditor";
 import SolutionsSearch from "./solution/SolutionsSearch";
 import Breadcrumbs from "./navigation/Breadcrumbs";
 import "./App.css";
+import SolutionPage from "./solution/SolutionPage";
 
 
 const {Header, Content, Footer} = Layout;
@@ -35,8 +30,8 @@ function App() {
                             <div className="site-layout-content">
                                 <Switch>
                                     <Route exact path="/search" component={SolutionsSearch}/>
-                                    <Route exact path="/solutions/:solutionId/design" component={SolutionViewer}/>
-                                    <Route exact path="/solutions/:solutionId/estimate" component={SolutionViewer}/>
+                                    <Route exact path="/solutions/:solutionId/design" component={SolutionPage}/>
+                                    <Route exact path="/solutions/:solutionId/estimate" component={SolutionPage}/>
                                     <Route exact path="/solutions/:solutionId/editor" component={SolutionEditor}/>
                                     <Route path="*" component={() => <Redirect to="/search"/>}/>
                                 </Switch>
