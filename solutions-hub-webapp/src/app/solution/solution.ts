@@ -1,12 +1,17 @@
 import dayjs from "dayjs";
 
 export interface Solution {
+    id: string,
+    slug: string,
     name: string,
     keywords: string[],
     description: string,
     readme: string,
     assets: SolutionAsset[],
-    contributors: SolutionContributor[]
+    contributors: SolutionContributor[],
+    updatedAt: dayjs.Dayjs,
+    views: number,
+    stars: number
 }
 
 export interface SolutionAsset {
@@ -15,5 +20,6 @@ export interface SolutionAsset {
 }
 
 export interface SolutionContributor {
+    userId: string,
     name: string
 }

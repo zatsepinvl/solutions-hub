@@ -6,18 +6,21 @@ import gfm from "remark-gfm";
 import pumlPreview from "./preview/puml.png";
 import drawioPreview from "./preview/drawio.png";
 import openapiPreview from "./preview/openapi.png";
-import {useSolutionStore} from "../store/useStore";
-import {SolutionAsset} from "./solution";
+import {useDemoStore} from "../store/useStore";
+import {Solution, SolutionAsset} from "./solution";
+import {useParams} from "react-router-dom";
 
 const {Text} = Typography;
 
-const SolutionDesign: FC = () => {
-    const solutionStore = useSolutionStore();
-    const solution = solutionStore.solution;
+export interface SolutionDesignProps {
+    solution: Solution
+}
 
+const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedFile, setSelectedFile] = useState<SolutionAsset>();
 
+    console.log(solution.readme);
 
     const showFileDemoPreview = (asset: SolutionAsset) => {
         setSelectedFile(asset);
@@ -47,42 +50,37 @@ const SolutionDesign: FC = () => {
             <Row gutter={[0, 10]}>
                 <Col span={24}>
                     <div>
-                        <Tag color="magenta">magenta</Tag>
-                        <Tag color="red">red</Tag>
-                        <Tag color="volcano">volcano</Tag>
-                        <Tag color="orange">orange</Tag>
-                        <Tag color="gold">gold</Tag>
-                        <Tag color="lime">lime</Tag>
-                        <Tag color="green">green</Tag>
-                        <Tag color="cyan">cyan</Tag>
-                        <Tag color="blue">blue</Tag>
-                        <Tag color="geekblue">geekblue</Tag>
-                        <Tag color="purple">purple</Tag>
+                        {solution.keywords.map(keyword =>
+                            <Tag color="#1890ff" style={{cursor: "pointer"}}>{keyword}</Tag>
+                        )}
                     </div>
                 </Col>
                 <Col span={24}>
-                    <List
-                        bordered
-                        itemLayout="horizontal"
-                        dataSource={solution.assets}
-                        size="small"
-                        renderItem={item => (
-                            <List.Item>
-                                <div>
-                                    <FileOutlined/>
-                                    <Text style={{marginLeft: "20px"}}>
-                                        <a onClick={() => showFileDemoPreview(item)}>{item.name}</a>
+                    {
+                        !!solution.assets.length &&
+                        <List
+                            bordered
+                            itemLayout="horizontal"
+                            dataSource={solution.assets}
+                            size="small"
+                            renderItem={item => (
+                                <List.Item>
+                                    <div>
+                                        <FileOutlined/>
+                                        <Text style={{marginLeft: "20px"}}>
+                                            <a onClick={() => showFileDemoPreview(item)}>{item.name}</a>
+                                        </Text>
+                                    </div>
+                                    <Text type="secondary">
+                                        {item.updatedAt.format('D MMM YYYY')}
                                     </Text>
-                                </div>
-                                <Text type="secondary">
-                                    {item.updatedAt.format('D MMM YYYY')}
-                                </Text>
-                            </List.Item>
-                        )}
-                    />
+                                </List.Item>
+                            )}
+                        />
+                    }
                 </Col>
                 <Col span={24}>
-                    <ReactMarkdown remarkPlugins={[gfm]}>{solution.readme}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[gfm]}  children={solution.readme}/>
                 </Col>
             </Row>
         </>

@@ -1,9 +1,9 @@
 import React from "react";
 import {EyeOutlined, StarOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Col, Divider, List, Row, Statistic, Tabs, Typography} from "antd";
+import {Button, Col, Divider, List, Row, Space, Statistic, Tabs, Typography} from "antd";
 import {observer} from "mobx-react";
-import {useSolutionStore} from "../store/useStore";
-import {useHistory} from "react-router-dom";
+import {useDemoStore} from "../store/useStore";
+import {useHistory, useParams} from "react-router-dom";
 import SolutionDesign from "./SolutionDesign";
 
 const {Title, Text} = Typography;
@@ -21,10 +21,17 @@ const similarSolutions = [
     },
 ];
 
+interface SolutionPageParams {
+    solutionSlug: string
+}
+
 const SolutionPage = observer(() => {
-    const solutionStore = useSolutionStore();
-    const solution = solutionStore.solution;
     const history = useHistory();
+    const {solutionSlug} = useParams<SolutionPageParams>();
+    const demoStore = useDemoStore();
+
+    const solution = demoStore.getSolutionBySlug(solutionSlug);
+    const otherSolutions = demoStore.solutions.filter(s => s.id !== solution.id);
 
     return (
         <Row gutter={20}>
@@ -37,23 +44,23 @@ const SolutionPage = observer(() => {
                     <Col>
                         <Row gutter={20} justify="center">
                             <Col>
-                                <Button type="primary" onClick={() => {
-                                    history.push("/solutions/solution-hub/editor")
-                                }}>
-                                    Edit
-                                </Button>
-                            </Col>
-                            <Col>
-                                <Button type="primary">
-                                    Export
-                                </Button>
+                                <Space>
+                                    <Button type="primary" onClick={() => {
+                                        history.push("/solutions/solution-hub/editor")
+                                    }}>
+                                        Edit
+                                    </Button>
+                                    <Button type="primary">
+                                        Export
+                                    </Button>
+                                </Space>
                             </Col>
                         </Row>
                     </Col>
                     <Col span={24}>
                         <Tabs defaultActiveKey="design">
                             <TabPane tab="Design" key="design">
-                                <SolutionDesign/>
+                                <SolutionDesign solution={solution}/>
                             </TabPane>
                             <TabPane tab="Estimate" key="estimate">
                                 Estimate will be here...
@@ -87,7 +94,7 @@ const SolutionPage = observer(() => {
                 <Title level={5}>Similar solutions</Title>
                 <List
                     itemLayout="horizontal"
-                    dataSource={similarSolutions}
+                    dataSource={otherSolutions}
                     renderItem={item => (
                         <List.Item>
                             <Text><a>{item.name}</a></Text>

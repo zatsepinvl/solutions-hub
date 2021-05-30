@@ -2,57 +2,52 @@ import {observer} from "mobx-react";
 import React, {FC} from "react";
 import {Col, Input, List, Row, Space} from "antd";
 import {
-    SolutionOutlined, StarOutlined, EyeOutlined
+    SolutionOutlined, StarOutlined, EyeOutlined, UserOutlined
 } from '@ant-design/icons';
 import {useHistory} from "react-router-dom";
+import {useDemoStore} from "../store/useStore";
 
 const {Search} = Input;
 
-
-const data = [
-    {
-        title: 'Ant Design Title 1',
-        readmeShort: "some text here...."
-    },
-    {
-        title: 'Ant Design Title 2',
-    },
-    {
-        title: 'Ant Design Title 3',
-    },
-    {
-        title: 'Ant Design Title 4',
-    },
-];
-
-
 const SolutionsSearch: FC = observer(() => {
     const history = useHistory();
+    const demoStore = useDemoStore();
+    const solutions = demoStore.solutions;
+
     return (
         <Row gutter={[20, 20]}>
             <Col span={16} offset={4}>
-                <Search placeholder="Keyword or name" enterButton="Search"/>
+                <Search placeholder="Search for..." enterButton="Search"/>
             </Col>
             <Col span={16} offset={4}>
                 <List
-                    itemLayout="horizontal"
-                    dataSource={data}
-                    renderItem={item => (
+                    itemLayout="vertical"
+                    dataSource={solutions}
+                    renderItem={solution => (
                         <List.Item
                             actions={[
                                 <Space key="list-vertical-star-o">
-                                    <StarOutlined/> {"156"}
+                                    {solution.updatedAt.format("MMM d YYYY")}
                                 </Space>,
                                 <Space key="list-vertical-star-o">
-                                    <EyeOutlined/> {"156"}
+                                    <StarOutlined/> {solution.stars}
+                                </Space>,
+                                <Space key="list-vertical-star-o">
+                                    <EyeOutlined/> {solution.views}
+                                </Space>,
+                                <Space>
+                                    <UserOutlined /> {solution.contributors.map(c => c.name).join(", ")}
                                 </Space>
                             ]}
+
                         >
                             <List.Item.Meta
-                                avatar={<SolutionOutlined style={{"fontSize": "24px"}}/>}
-                                title={<a href="#"
-                                          onClick={() => history.push("/solutions/solution-hub/design")}>{item.title}</a>}
-                                description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                title={
+                                    <a onClick={() => history.push(`/solutions/${solution.slug}/design`)}>
+                                        {solution.name}
+                                    </a>
+                                }
+                                description={solution.description}
                             />
                         </List.Item>
                     )}

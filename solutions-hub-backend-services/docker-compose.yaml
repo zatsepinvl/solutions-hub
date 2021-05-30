@@ -4,14 +4,13 @@ services:
   #https://hub.docker.com/r/minio/minio/
   minio:
     image: minio/minio:latest
-    volumes:
-      - minio-data:/data
-    expose:
-      - "9000"
     environment:
-      MINIO_ROOT_USER: minio
-      MINIO_ROOT_PASSWORD: password
-    command: server /data
+      MINIO_ROOT_USER: "minio"
+      MINIO_ROOT_PASSWORD: "password"
+    entrypoint: sh
+    command: -c 'mkdir -p /storage/default && /usr/bin/minio server /storage'
+    volumes:
+      - .minio:/storage
     ports:
       - 9000:9000
 
@@ -23,6 +22,3 @@ services:
     ports:
       - 8080:8080
       - 8443:8443
-
-volumes:
-  minio-data:

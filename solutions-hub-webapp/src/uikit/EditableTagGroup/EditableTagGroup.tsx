@@ -84,6 +84,8 @@ const EditableTagGroup: FC = () => {
                     <Tag
                         className="tag"
                         key={tag}
+                        color="#1890ff"
+                        closable={true}
                         onClose={() => handleClose(tag)}
                     >
                       <span>

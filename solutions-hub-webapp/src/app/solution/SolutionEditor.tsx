@@ -6,6 +6,7 @@ import {DraggerProps} from "antd/lib/upload";
 import EditableTagGroup from "../../uikit/EditableTagGroup/EditableTagGroup";
 import {useHistory} from 'react-router-dom';
 import {Typography, Space} from 'antd';
+import {useDemoStore} from "../store/useStore";
 
 const {Text, Link, Title} = Typography;
 

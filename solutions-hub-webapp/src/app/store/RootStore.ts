@@ -1,10 +1,10 @@
-import SolutionStore from "../solution/solutionStore";
+import DemoStore from "../demo/demoStore";
 
 class RootStore {
-    readonly solutionStore: SolutionStore;
+    readonly demoStore: DemoStore;
 
     constructor() {
-        this.solutionStore = new SolutionStore();
+        this.demoStore = new DemoStore();
     }
 
 }

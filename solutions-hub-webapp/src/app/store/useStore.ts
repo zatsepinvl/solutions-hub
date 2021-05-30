@@ -3,10 +3,10 @@ import RootStore from "./RootStore";
 
 const RootStoreContext = createContext<RootStore>(new RootStore());
 const useRootStore = () => useContext<RootStore>(RootStoreContext);
-const useSolutionStore = () => useRootStore().solutionStore;
+const useDemoStore = () => useRootStore().demoStore;
 
 export {
     RootStoreContext,
     useRootStore,
-    useSolutionStore
+    useDemoStore
 }
