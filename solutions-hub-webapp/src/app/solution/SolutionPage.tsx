@@ -57,7 +57,7 @@ const SolutionPage = observer(() => {
                             </Col>
                         </Row>
                     </Col>
-                    <Col span={24}>
+                    <Col span={24} >
                         <Tabs defaultActiveKey="design">
                             <TabPane tab="Design" key="design">
                                 <SolutionDesign solution={solution}/>
