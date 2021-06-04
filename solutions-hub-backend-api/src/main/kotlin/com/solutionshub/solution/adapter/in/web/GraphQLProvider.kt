@@ -1,12 +1,21 @@
 package com.solutionshub.solution.adapter.`in`.web
 
-import org.springframework.stereotype.Component
+import com.solutionshub.annotation.Resolver
+import com.solutionshub.solution.application.port.`in`.SolutionQuery
+import com.solutionshub.solution.domain.Solution
+import graphql.kickstart.tools.GraphQLQueryResolver
 
 
-@Component
-class Query : GraphQLQueryResolver {
-    private val postDao: PostDao? = null
-    fun getRecentPosts(count: Int, offset: Int): List<Post> {
-        return postsDao.getRecentPosts(count, offset)
+@Resolver
+class SolutionResolver(
+    private val solutionQuery: SolutionQuery,
+) : GraphQLQueryResolver {
+
+    fun solutionById(id: String): Solution {
+        return solutionQuery.getSolutionById(id)
+    }
+
+    fun solutionBySlug(id: String): Solution {
+        return solutionQuery.getSolutionById(id)
     }
 }

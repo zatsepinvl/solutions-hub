@@ -31,11 +31,11 @@ dependencies {
     // Minio
     implementation("io.minio:minio:8.2.1")
     // GraphQL
-    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0")
+    //      Main graphql java lib
+    implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:11.1.0")
+    //      Generates GraphQLSchema from *.graphqls class: https://www.graphql-java-kickstart.com/tools/
     implementation("com.graphql-java-kickstart:graphql-java-tools:11.0.1")
-    runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:12.0.0")
-    runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:12.0.0")
-   /* implementation("io.github.graphql-java:graphql-java-annotations:8.4")*/
+    runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:11.1.0")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

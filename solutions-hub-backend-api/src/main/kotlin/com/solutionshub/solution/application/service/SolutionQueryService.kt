@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class SolutionQueryService : SolutionQuery {
+private class SolutionQueryService : SolutionQuery {
     private val demoSolution = Solution(UUID.randomUUID().toString(), "solutions-hub", "Solutions Hub")
 
     override fun getSolutionById(id: String): Solution {
