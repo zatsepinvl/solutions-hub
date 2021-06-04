@@ -8,14 +8,14 @@ import {useDemoStore} from "../store/useStore";
 const {Search} = Input;
 const {Meta} = Card;
 
-const SolutionsMainPage: FC = observer(() => {
+const SolutionsSearch: FC = observer(() => {
     const history = useHistory();
     const demoStore = useDemoStore();
     const solutions = demoStore.solutions;
 
     return (
         <Row gutter={[20, 20]}>
-            <Col span={24}>
+            <Col span={16} offset={4}>
                 <List
                     itemLayout="vertical"
                     dataSource={solutions}
@@ -25,7 +25,7 @@ const SolutionsMainPage: FC = observer(() => {
                             <Card hoverable onClick={() => history.push(`/solutions/${solution.slug}/design`)}>
                                 <Meta title={solution.name}/>
                                 <>
-                                    <Space direction={"vertical"} style={{marginTop:10}}>
+                                    <Space direction={"vertical"} style={{marginTop: 10}}>
                                         <div>
                                             {solution.description}
                                         </div>
@@ -54,4 +54,4 @@ const SolutionsMainPage: FC = observer(() => {
     )
 })
 
-export default SolutionsMainPage;
+export default SolutionsSearch;

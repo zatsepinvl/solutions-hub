@@ -3,7 +3,7 @@ import {Col, Input, Layout, Row, Typography} from "antd";
 import "antd/dist/antd.css";
 import {Redirect, Route, Switch, useHistory,} from "react-router-dom";
 import SolutionEditor from "./solution/SolutionEditor";
-import SolutionsMainPage from "./solution/SolutionsMainPage";
+import SolutionsSearch from "./solution/SolutionsSearch";
 import "./App.css";
 import SolutionPage from "./solution/SolutionPage";
 
@@ -15,8 +15,8 @@ function App() {
     const history = useHistory();
 
     return (
-        <div className="App">
-            <Layout className="layout" style={{backgroundColor:"white"}}>
+        <div className="app">
+            <Layout className="layout">
                 <Header style={{lineHeight: "32px"}}>
                     <Row align="middle" style={{height: "100%"}} gutter={20}>
                         <Col>
@@ -30,20 +30,21 @@ function App() {
                     </Row>
                 </Header>
                 <Content style={{width: "1080px", margin: "auto"}}>
-                  {/*  <Breadcrumbs/>*/}
+                    {/*  <Breadcrumbs/>*/}
                     <div className="site-layout-content">
                         <Switch>
-                            <Route exact path="/" component={SolutionsMainPage}/>
+                            <Route exact path="/solutions/search" component={SolutionsSearch}/>
                             <Route exact path="/solutions/:solutionSlug/design" component={SolutionPage}/>
                             <Route exact path="/solutions/:solutionSlug/estimate" component={SolutionPage}/>
                             <Route exact path="/solutions/new" component={SolutionEditor}/>
                             <Route exact path="/solutions/:solutionSlug/editor" component={SolutionEditor}/>
-                            <Route path="*" component={() => <Redirect to="/"/>}/>
+                            <Route path="*" component={() => <Redirect to="/solutions/search"/>}/>
                         </Switch>
                     </div>
                 </Content>
                 <Footer style={{textAlign: 'center'}}>
-                    Solutions Hub ©2021 Created by <a href="https://github.com/zatsepinvl/solutions-hub">Vladimir Zatsepin</a>
+                    Solutions Hub ©2021 Created by <a href="https://github.com/zatsepinvl/solutions-hub">Vladimir
+                    Zatsepin</a>
                 </Footer>
             </Layout>
         </div>

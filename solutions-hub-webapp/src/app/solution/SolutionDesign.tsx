@@ -46,7 +46,7 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                 {selectedFile?.name.endsWith(".drawio") && <img width={600} src={drawioPreview}/>}
                 {selectedFile?.name.endsWith(".yaml") && <img width={600} src={openapiPreview}/>}
             </Modal>
-            <Row gutter={[0, 20]}>
+            <Row gutter={[10, 20]}>
                 <Col span={24}>
                     <div>
                         {solution.keywords.map(keyword =>
@@ -65,12 +65,12 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                                 size="small"
                                 renderItem={item => (
                                     <List.Item>
-                                        <div>
+                                        <Space>
                                             <FileOutlined/>
-                                            <Text style={{marginLeft: "20px"}}>
+                                            <Text>
                                                 <a onClick={() => showFileDemoPreview(item)}>{item.name}</a>
                                             </Text>
-                                        </div>
+                                        </Space>
                                         <Text type="secondary">
                                             {item.updatedAt.format('D MMM YYYY')}
                                         </Text>
@@ -86,7 +86,7 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                             <UnorderedListOutlined/> Readme
                         </Space>
                     }>
-                        <ReactMarkdown remarkPlugins={[gfm]} children={solution.readme}/>
+                        <ReactMarkdown skipHtml={false} remarkPlugins={[gfm]} children={solution.readme}/>
                     </Card>
                 </Col>
             </Row>

@@ -1,5 +1,6 @@
 import {Solution} from "../../solution/solution";
 import dayjs from "dayjs";
+
 const solutionsHub: Solution = {
     id: "s1",
     slug: "solutions-hub",
@@ -72,24 +73,21 @@ To do that, Solutions Hub provides the following functionality:
 
 ## UX
 
-  **Page**          **Components**                 **Actions**
-  ----------------- ------------------------------ ------------------------------------------------------
-  Main page         Search input, solutions list   Search solutions by name, keywords, content
-  Solution design   Solution design                Export solution, edit solution (by contributor only)
+|Page|Components|Actions|
+|-----------------|------------------------------|------------------------------------------------------|
+|Main page        |Search input, solutions list  |Search solutions by name, keywords, content|
+|Solution design  |Solution design               |Export solution, edit solution (by contributor only)|
 
-![](output-media-1622366134560/media/image1.png){width="6.5in"
-height="4.603472222222222in"}
+![](/media/image1.png)
 
-![](output-media-1622366134560/media/image2.png){width="6.5in"
-height="6.373611111111111in"}
+![](/media/image2.png)
 
-![](output-media-1622366134560/media/image3.png){width="6.5in"
-height="5.559027777777778in"}
+![](/media/image3.png =250x)
 
 ## Markdown Converter
 
-![](output-media-1622366134560/media/image4.png){width="6.5in"
-height="4.2652777777777775in"}
+<img src="/media/image4.png" width="6.5in" height="4.2652777777777775in"/>
+
 `,
     assets: [
         {

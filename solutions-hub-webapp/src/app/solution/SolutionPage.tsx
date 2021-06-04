@@ -1,6 +1,6 @@
 import React from "react";
 import {EyeOutlined, StarOutlined, UserOutlined} from '@ant-design/icons';
-import {Button, Col, Divider, List, Row, Space, Statistic, Tabs, Typography} from "antd";
+import {Button, Col, Divider, List, Row, Space, Tabs, Tooltip, Typography} from "antd";
 import {observer} from "mobx-react";
 import {useDemoStore} from "../store/useStore";
 import {useHistory, useParams} from "react-router-dom";
@@ -34,12 +34,19 @@ const SolutionPage = observer(() => {
     const otherSolutions = demoStore.solutions.filter(s => s.id !== solution.id);
 
     return (
-        <Row gutter={20}>
+        <Row gutter={[20, 10]}>
             <Col span={20}>
-                <Row gutter={20}>
+                <Row gutter={[20, 10]}>
                     <Col flex={1}>
                         <Title level={3} style={{"marginBottom": 0}}>{solution.name}</Title>
-                        <Text type="secondary">Updated 10/11/2021</Text>
+                        <Text>Updated {solution.updatedAt.format("MMM d YYYY")}</Text>
+                        <Divider type={"vertical"}/>
+                        <Tooltip title={"Total unique users veiwed the page"}>
+                            <Space>
+                                <EyeOutlined/>
+                                <Text>{solution.views}</Text>
+                            </Space>
+                        </Tooltip>
                     </Col>
                     <Col>
                         <Row gutter={20} justify="center">
@@ -53,29 +60,23 @@ const SolutionPage = observer(() => {
                                     <Button type="primary">
                                         Export
                                     </Button>
+                                    <Tooltip title={"When you like the solution you can start it"}>
+                                        <Button icon={<StarOutlined/>}>
+                                            Star | {solution.stars}
+                                        </Button>
+                                    </Tooltip>
                                 </Space>
                             </Col>
                         </Row>
                     </Col>
-                    <Col span={24} >
-                        <Tabs defaultActiveKey="design">
-                            <TabPane tab="Design" key="design">
-                                <SolutionDesign solution={solution}/>
-                            </TabPane>
-                            <TabPane tab="Estimate" key="estimate">
-                                Estimate will be here...
-                            </TabPane>
-                        </Tabs>
+                    <Col span={24}>
+                        <SolutionDesign solution={solution}/>
                     </Col>
                 </Row>
             </Col>
 
 
             <Col span={4}>
-                <Statistic title="Stars" value={1128} prefix={<StarOutlined/>}/>
-                <Statistic title="Views" value={112893} prefix={<EyeOutlined/>}/>
-
-                <Divider/>
                 <Title level={5}>Contributors</Title>
                 <List
                     itemLayout="horizontal"

@@ -1,11 +1,11 @@
-.logo {
-
+.app {
+    background-color: rgb(240, 242, 245);
 }
 
 .site-layout-content {
     min-height: 520px;
-    padding-top: 24px;
-    /*padding: 24px;*/
+    padding-top: 32px;
+    padding-bottom: 32px;
 }
 
 #components-layout-demo-top .logo {
@@ -13,7 +13,6 @@
     width: 120px;
     height: 31px;
     margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
 }
 
 .ant-row-rtl #components-layout-demo-top .logo {
