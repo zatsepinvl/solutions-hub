@@ -92,16 +92,6 @@ const SolutionPage = observer(() => {
                 />
 
                 <Divider/>
-                <Title level={5}>Similar solutions</Title>
-                <List
-                    itemLayout="horizontal"
-                    dataSource={otherSolutions}
-                    renderItem={item => (
-                        <List.Item>
-                            <Text><a>{item.name}</a></Text>
-                        </List.Item>
-                    )}
-                />
             </Col>
         </Row>
     )

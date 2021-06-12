@@ -82,11 +82,7 @@ To do that, Solutions Hub provides the following functionality:
 
 ![](/media/image2.png)
 
-![](/media/image3.png =250x)
-
-## Markdown Converter
-
-<img src="/media/image4.png" width="6.5in" height="4.2652777777777775in"/>
+![](/media/image3.png)
 
 `,
     assets: [
@@ -99,7 +95,7 @@ To do that, Solutions Hub provides the following functionality:
             updatedAt: dayjs()
         },
         {
-            name: 'solutions-hub-solution-design.drawio',
+            name: 'solutions-hub.drawio',
             updatedAt: dayjs()
         },
         {

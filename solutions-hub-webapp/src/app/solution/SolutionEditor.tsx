@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
-import {Form, Input, Button, Radio, Col, Row, Tag, Tooltip, Divider, Tabs} from 'antd';
-import {Upload, message} from 'antd';
-import {InboxOutlined, PlusOutlined} from '@ant-design/icons';
+import {Button, Card, Col, Form, Input, Radio, Row, Space, Tooltip, Typography, Upload} from 'antd';
+import {
+    AlignLeftOutlined,
+    FileOutlined,
+    InboxOutlined,
+    TagsOutlined,
+    UnorderedListOutlined,
+    UsergroupAddOutlined
+} from '@ant-design/icons';
 import {DraggerProps} from "antd/lib/upload";
 import EditableTagGroup from "../../uikit/EditableTagGroup/EditableTagGroup";
 import {useHistory} from 'react-router-dom';
-import {Typography, Space} from 'antd';
-import {useDemoStore} from "../store/useStore";
 
 const {Text, Link, Title} = Typography;
 
@@ -39,61 +43,77 @@ function SolutionEditor() {
     return (
         <div className="edit-solution-form">
             <Row gutter={20}>
-                <Col className="gutter-row" span={20}>
-                    <Form
-                        layout={"vertical"}
-                        form={form}
-                    >
-                        <Form.Item label="Solution name">
-                            <Input/>
-                        </Form.Item>
-                        <Form.Item label="Keywords">
-                            <EditableTagGroup/>
-                        </Form.Item>
+                <Col className="gutter-row" span={20} offset={2}>
+                    <Title level={3}>Edit solution</Title>
+                    <Card>
+                        <Form
+                            layout={"vertical"}
+                            form={form}
+                        >
+                            <Form.Item label={<Space><AlignLeftOutlined/> Name</Space>}>
+                                <Input/>
+                            </Form.Item>
 
-                        <Form.Item label="Contributors">
-                            <EditableTagGroup/>
-                        </Form.Item>
+                            <Form.Item label={<Space><AlignLeftOutlined/> Short description</Space>}>
+                                <Input/>
+                            </Form.Item>
 
-                        <Form.Item label="Readme">
-                            <Radio.Group value="edit">
-                                <Radio.Button value="edit">Edit</Radio.Button>
-                                <Radio.Button value="preview">Preview</Radio.Button>
-                            </Radio.Group>
-                            <div onDragEnter={onDrag}>
-                                <TextArea rows={8}/>
-                            </div>
-                        </Form.Item>
+                            <Form.Item label={<Space><TagsOutlined/> Tags</Space>}>
+                                <EditableTagGroup/>
+                            </Form.Item>
 
-                        <Form.Item>
-                            <Button type="primary" onClick={() => {
-                                history.push("/solutions/solution-hub/readme")
-                            }}>Save</Button>
-                        </Form.Item>
-                    </Form>
-                </Col>
-                <Col className="gutter-row" span={4}>
-                    <Title level={5}>Import</Title>
-                    <div style={{"height": "200px"}}>
-                        <Dragger {...importDaggerProps}>
-                            <p className="ant-upload-drag-icon">
-                                <InboxOutlined/>
-                            </p>
-                            <p className="ant-upload-text">Import Word file</p>
-                        </Dragger>
-                    </div>
+                            <Form.Item label={<Space><UsergroupAddOutlined/> Contributors</Space>}>
+                                <EditableTagGroup/>
+                            </Form.Item>
 
-                    <Divider/>
+                            <Form.Item label={<Space><FileOutlined/> Assets</Space>}>
+                                <Dragger height={60}>
+                                    <Space>
+                                        <InboxOutlined/>
+                                        <p className="ant-upload-text">Add any file</p>
+                                    </Space>
+                                </Dragger>
+                            </Form.Item>
 
-                    <Title level={5}>Attachments</Title>
-                    <div style={{"height": "200px"}}>
-                        <Dragger {...attachmentDaggerProps}>
-                            <p className="ant-upload-drag-icon">
-                                <InboxOutlined/>
-                            </p>
-                            <p className="ant-upload-text">Import Word file</p>
-                        </Dragger>
-                    </div>
+                            <Form.Item label={<Space><UnorderedListOutlined/> Readme type</Space>}>
+                                <Radio.Group>
+                                    <Tooltip title="Write readme in markdown language">
+                                        <Radio value="markdown">Markdown</Radio>
+                                    </Tooltip>
+                                    <Tooltip title="Upload a file">
+                                        <Radio value="file">File</Radio>
+                                    </Tooltip>
+                                </Radio.Group>
+                            </Form.Item>
+
+                            <Form.Item label={<Space><UnorderedListOutlined/> Readme</Space>}>
+                                <Dragger height={60} multiple={false}>
+                                    <Space>
+                                        <InboxOutlined/>
+                                        <p className="ant-upload-text">Upload a file that will be shown as main readme
+                                            of the solution</p>
+                                    </Space>
+                                </Dragger>
+                            </Form.Item>
+
+                            <Form.Item label={<Space><UnorderedListOutlined/> Readme</Space>}>
+                                Markdown
+                                <Radio.Group value="edit">
+                                    <Radio.Button value="edit">Edit</Radio.Button>
+                                    <Radio.Button value="preview">Preview</Radio.Button>
+                                </Radio.Group>
+                                <div onDragEnter={onDrag}>
+                                    <TextArea rows={8}/>
+                                </div>
+                            </Form.Item>
+
+                            <Form.Item>
+                                <Button type="primary" onClick={() => {
+                                    history.push("/solutions/solution-hub/readme")
+                                }}>Save</Button>
+                            </Form.Item>
+                        </Form>
+                    </Card>
                 </Col>
             </Row>
         </div>

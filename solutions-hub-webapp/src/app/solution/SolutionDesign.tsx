@@ -1,10 +1,9 @@
 import React, {FC, useState} from "react";
-import {Card, Col, List, Modal, Row, Space, Tag, Typography} from "antd";
-import {FileOutlined, UnorderedListOutlined} from "@ant-design/icons";
+import {Button, Card, Col, List, Modal, Row, Space, Tag, Tooltip, Typography} from "antd";
+import {DownloadOutlined, FileOutlined, UnorderedListOutlined} from "@ant-design/icons";
 import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 import pumlPreview from "./preview/puml.png";
-import drawioPreview from "./preview/drawio.png";
 import openapiPreview from "./preview/openapi.png";
 import {Solution, SolutionAsset} from "./solution";
 
@@ -29,21 +28,18 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
     return (
         <>
             <Modal title="File Demo Preview"
-                   width={700}
+                   width={1000}
                    visible={isModalVisible}
                    onOk={() => setIsModalVisible(false)}
                    onCancel={() => setIsModalVisible(false)}
                    okText={"Great!"}
                    cancelText={"Got it!"}
                    centered={true}>
-                <p>
-                    Solutions Hub is going to show in place the files like PlantUML diagrams, draw.io files and OpenAPI
-                    specs.
-                    You dont need to download them or open in another view.
-                    Everything is displayed by a click. Here is the idea how the file will be rendered:
-                </p>
                 {selectedFile?.name.endsWith(".puml") && <img width={600} src={pumlPreview}/>}
-                {selectedFile?.name.endsWith(".drawio") && <img width={600} src={drawioPreview}/>}
+                {selectedFile?.name.endsWith(".drawio") && (
+                    <iframe frameBorder="0" style={{"width": "100%", "height": "500px"}}
+                            src="https://www.draw.io?lightbox=1#Uhttp%3A%2F%2Flocalhost%3A3000%2Fsolutions-hub.drawio"/>
+                )}
                 {selectedFile?.name.endsWith(".yaml") && <img width={600} src={openapiPreview}/>}
             </Modal>
             <Row gutter={[10, 20]}>
@@ -57,8 +53,12 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                 {
                     !!solution.assets.length &&
                     <Col span={24}>
-                        <Card size="small" title="Assets"
-                              bodyStyle={{padding: 0}}>
+                        <Card title={
+                            <Space>
+                                <UnorderedListOutlined/> Assets
+                            </Space>
+                        }
+                        >
                             <List
                                 itemLayout="horizontal"
                                 dataSource={solution.assets}
@@ -68,11 +68,20 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                                         <Space>
                                             <FileOutlined/>
                                             <Text>
-                                                <a onClick={() => showFileDemoPreview(item)}>{item.name}</a>
+                                                <a>
+                                                    {item.name}
+                                                </a>
                                             </Text>
                                         </Space>
                                         <Text type="secondary">
-                                            {item.updatedAt.format('D MMM YYYY')}
+                                            <Space>
+                                                <Tooltip title="Download">
+                                                    <Button size="small" type="text" icon={<DownloadOutlined/>}/>
+                                                </Tooltip>
+                                                <Text>
+                                                    {item.updatedAt.format('D MMM YYYY')}
+                                                </Text>
+                                            </Space>
                                         </Text>
                                     </List.Item>
                                 )}
@@ -81,7 +90,7 @@ const SolutionDesign: FC<SolutionDesignProps> = ({solution}) => {
                     </Col>
                 }
                 <Col span={24}>
-                    <Card size="small" title={
+                    <Card title={
                         <Space>
                             <UnorderedListOutlined/> Readme
                         </Space>
