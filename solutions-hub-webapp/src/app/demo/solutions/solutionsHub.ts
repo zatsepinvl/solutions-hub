@@ -17,8 +17,6 @@ const solutionsHub: Solution = {
     ],
     description: "Solution hub is a web application that provides the capabilities of solution design sharing withing the software company. Built by developers for developers.",
     readme: `
-Prepared by Vladimir Zatsepin <zatsepin.vl@gmail.com>
-
 # Introduction
 
 Software engineers build and implement different solutions every day.
