@@ -1,0 +1,23 @@
+solution:
+  version: "0.1"
+  name: Solutions Hub
+  description: Solutions Hub is a web application that provides the capabilities of solution design sharing withing the software company.
+  tags:
+    - hub
+    - react
+    - spring
+    - rest api
+  contributors:
+    - name: Vladimir Zatsepin
+      skype: zatsepin.vl
+      github: zatsepinvl
+  files:
+    - name: OpenAPI spec
+      path: ../../solutions-hub-solution-design/solution-hub-openapi.yaml
+    - name: Solutions Hub diagrams
+      path: ../../solutions-hub-solution-design/solutions-hub.drawio
+    - name: Design Doc
+      path: ../../solutions-hub-solution-design/Solutions Hub Solution Design.docx
+  readme:
+    type: markdown #markdown or file are supported
+    path: README.md
