@@ -58,8 +58,8 @@ To do that, Solutions Hub provides the following functionality:
 |Main page        |Search input, solutions list  |Search solutions by name, keywords, content|
 |Solution design  |Solution design               |Export solution, edit solution (by contributor only)|
 
-![](solutions/solutions-hub/media/image1.png)
+![](media/image1.png)
 
-![](solutions/solutions-hub/media/image2.png)
+![](media/image2.png)
 
-![](solutions/solutions-hub/media/image3.png)
+![](media/image3.png)
